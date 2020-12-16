@@ -20,16 +20,22 @@ const getSubmit = (ev) => {
     refs.imgList.innerHTML = '';
     inputValue = ev.target.elements.query.value;
 
-    if (inputValue.length > 1) {
+    if (inputValue.length > 0) {
         fetchImages(inputValue, page, API_KEY)
             .then(images => {
-                console.log(images)
-                addToMarkup(images)
-                refs.button.style.display = 'block';
+                if (Object.keys(images).length > 0) {
+
+                    addToMarkup(images);
+                    refs.button.style.display = 'block';
+                } else {
+                    console.log('no results'); //можно добавить pnotify.error()
+                }
+
             }).catch(err =>
                 console.log(err))
     }
 }
+
 
 refs.form.addEventListener('submit', getSubmit)
 
