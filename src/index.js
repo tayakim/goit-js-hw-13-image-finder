@@ -27,7 +27,9 @@ const getSubmit = (ev) => {
 
                     addToMarkup(images);
                     refs.button.style.display = 'block';
+
                 } else {
+                    refs.button.style.display = 'none';
                     console.log('no results'); //можно добавить pnotify.error()
                 }
 
